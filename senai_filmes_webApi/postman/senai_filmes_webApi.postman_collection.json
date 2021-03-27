@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "2bbbc635-c918-4b46-94df-8985b7a2911f",
+		"name": "senai_filmes_webApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Generos.ListarTodos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\" : \"Ficção Científica\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/generos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"generos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generos.Cadastrar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/generos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"generos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generos.BuscarPorId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/generos/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"generos",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generos.AtualizarIdUrl",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\" : \"Suspense\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/generos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"generos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generos.Deletar",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/generos/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"generos",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generos.AtualizarIdCorpo",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idGenero\" : 1,\r\n    \"nome\" : \"Ficção Cíentífica\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/generos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"generos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
