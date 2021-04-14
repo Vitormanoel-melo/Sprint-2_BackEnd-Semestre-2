@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\Projeto-Peoples\\Senai.Peoples.WebApi\\Senai.Peoples.WebApi\\Senai.Peoples.WebApi.csproj": {}
+    "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\2-Termo\\Sprint-2-BackEnd\\RepositorioGit\\Projeto-Peoples\\Senai.Peoples.WebApi\\Senai.Peoples.WebApi\\Senai.Peoples.WebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\Projeto-Peoples\\Senai.Peoples.WebApi\\Senai.Peoples.WebApi\\Senai.Peoples.WebApi.csproj": {
+    "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\2-Termo\\Sprint-2-BackEnd\\RepositorioGit\\Projeto-Peoples\\Senai.Peoples.WebApi\\Senai.Peoples.WebApi\\Senai.Peoples.WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\Projeto-Peoples\\Senai.Peoples.WebApi\\Senai.Peoples.WebApi\\Senai.Peoples.WebApi.csproj",
+        "projectUniqueName": "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\2-Termo\\Sprint-2-BackEnd\\RepositorioGit\\Projeto-Peoples\\Senai.Peoples.WebApi\\Senai.Peoples.WebApi\\Senai.Peoples.WebApi.csproj",
         "projectName": "Senai.Peoples.WebApi",
-        "projectPath": "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\Projeto-Peoples\\Senai.Peoples.WebApi\\Senai.Peoples.WebApi\\Senai.Peoples.WebApi.csproj",
+        "projectPath": "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\2-Termo\\Sprint-2-BackEnd\\RepositorioGit\\Projeto-Peoples\\Senai.Peoples.WebApi\\Senai.Peoples.WebApi\\Senai.Peoples.WebApi.csproj",
         "packagesPath": "C:\\Users\\Vitor Manoel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\Projeto-Peoples\\Senai.Peoples.WebApi\\Senai.Peoples.WebApi\\obj\\",
+        "outputPath": "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\2-Termo\\Sprint-2-BackEnd\\RepositorioGit\\Projeto-Peoples\\Senai.Peoples.WebApi\\Senai.Peoples.WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Vitor Manoel\\AppData\\Roaming\\NuGet\\NuGet.Config",

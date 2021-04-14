@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7N5DeakrUsMl+bjlEFOiC7ib8FEXr7OgPtOb0RoYRJ4MrQNqDK8MNExBgcrP8pWsEj1s4zwCBM+9/5Fv6cghfQ==",
+  "dgSpecHash": "rELQuguADWwAf625oDJfqYI8M545YCldsF62WvfesMgrYeRA0+AG2EV3xJq3uShXMa6Wm/xQLxAVYYTmXAWFYA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\Projeto-Peoples\\Senai.Peoples.WebApi\\Senai.Peoples.WebApi\\Senai.Peoples.WebApi.csproj",
+  "projectFilePath": "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\2-Termo\\Sprint-2-BackEnd\\RepositorioGit\\Projeto-Peoples\\Senai.Peoples.WebApi\\Senai.Peoples.WebApi\\Senai.Peoples.WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Vitor Manoel\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Vitor Manoel\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
