@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Senai.Peoples.WebApi.Domains;
 using Senai.Peoples.WebApi.Interfaces;
@@ -27,6 +28,7 @@ namespace Senai.Peoples.WebApi.Controllers
         /// Lista todos os funcionários
         /// </summary>
         /// <returns>Status code Ok e a listaFuncionario</returns>
+        [Authorize(Roles = "administrador")]
         [HttpGet]
         public IActionResult Get()
         {
