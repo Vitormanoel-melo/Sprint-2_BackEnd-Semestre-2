@@ -45,6 +45,10 @@ WHERE idJogo = 1;
 SELECT idEstudio, nomeEstudio FROM estudios
 WHERE idEstudio = 1;
 
+
+
+-- Comandos Adicionais
+
 SELECT * FROM tiposUsuarios;
 
 

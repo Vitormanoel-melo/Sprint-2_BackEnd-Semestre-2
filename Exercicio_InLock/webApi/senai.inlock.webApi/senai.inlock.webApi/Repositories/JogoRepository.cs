@@ -89,6 +89,46 @@ namespace senai.inlock.webApi.Repositories
 
 
         /// <summary>
+        /// Busca um jogo pelo nome
+        /// </summary>
+        /// <param name="nome">nome do jogo que será buscado</param>
+        /// <returns>jogo encontrado ou null</returns>
+        public JogoDomain BuscarPorNome(string nome)
+        {
+            using (SqlConnection con = new SqlConnection(stringConexao))
+            {
+                string querySelectName = "SELECT idJogo, nomeJogo, descricao, dataLancamento, valor, idEstudio FROM jogos WHERE nomeJogo = @nomeJogo";
+
+                using (SqlCommand cmd = new SqlCommand(querySelectName, con))
+                {
+                    con.Open();
+
+                    cmd.Parameters.AddWithValue("@nomeJogo", nome);
+
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    if (rdr.Read())
+                    {
+                        JogoDomain jogo = new JogoDomain
+                        {
+                            idJogo = Convert.ToInt32(rdr["idJogo"]),
+                            nomeJogo = rdr["nomeJogo"].ToString(),
+                            dataLancamento = Convert.ToDateTime(rdr["dataLancamento"]),
+                            descricao = rdr["descricao"].ToString(),
+                            valor = Convert.ToDouble(rdr["valor"]),
+                            idEstudio = Convert.ToInt32(rdr["idEstudio"])
+                        };
+
+                        return jogo;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+
+        /// <summary>
         /// Método que cadastra um jogo
         /// </summary>
         /// <param name="novoJogo">Objeto novoJogo que será cadastrado</param>

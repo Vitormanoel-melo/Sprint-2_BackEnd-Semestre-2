@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using senai.inlock.webApi.Domains;
 using senai.inlock.webApi.Interfaces;
@@ -28,6 +29,7 @@ namespace senai.inlock.webApi.Controllers
         /// Endpoint que lista todos os estúdios e seus respectivos jogos
         /// </summary>
         /// <returns>Status code 200 - Ok com a lista de estúdios</returns>
+        [Authorize]
         [HttpGet]
         public IActionResult Get()
         {
@@ -54,6 +56,7 @@ namespace senai.inlock.webApi.Controllers
         /// </summary>
         /// <param name="id">id do estúdio que será atualizado</param>
         /// <returns>Objeto estudio encontrado</returns>
+        [Authorize(Roles = "1")]
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -81,6 +84,7 @@ namespace senai.inlock.webApi.Controllers
         /// Endpoint que cadastra um novo estúdio
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "1")]
         [HttpPost]
         public IActionResult Post(EstudioDomain estudio)
         {
@@ -105,6 +109,7 @@ namespace senai.inlock.webApi.Controllers
         /// <param name="id">id do estúdio que será atualizado</param>
         /// <param name="estudio">Objeto com as novas informações</param>
         /// <returns>Status code 201 - Ok ou Status code 404 - Not Found</returns>
+        [Authorize(Roles = "1")]
         [HttpPut("{id}")]
         public IActionResult PutByIdUrl(int id, EstudioDomain estudio)
         {
@@ -130,6 +135,7 @@ namespace senai.inlock.webApi.Controllers
         }
 
 
+        [Authorize(Roles = "1")]
         /// <summary>
         /// Endpoint que deleta um estúdio pelo id
         /// </summary>

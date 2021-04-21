@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\2-Termo\\Sprint-2-BackEnd\\RepositorioGit\\Projeto_InLock\\webApi\\senai.inlock.webApi\\senai.inlock.webApi\\senai.inlock.webApi.csproj": {}
+    "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\2-Termo\\Sprint-2-BackEnd\\RepositorioGit\\Exercicio_InLock\\webApi\\senai.inlock.webApi\\senai.inlock.webApi\\senai.inlock.webApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\2-Termo\\Sprint-2-BackEnd\\RepositorioGit\\Projeto_InLock\\webApi\\senai.inlock.webApi\\senai.inlock.webApi\\senai.inlock.webApi.csproj": {
+    "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\2-Termo\\Sprint-2-BackEnd\\RepositorioGit\\Exercicio_InLock\\webApi\\senai.inlock.webApi\\senai.inlock.webApi\\senai.inlock.webApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\2-Termo\\Sprint-2-BackEnd\\RepositorioGit\\Projeto_InLock\\webApi\\senai.inlock.webApi\\senai.inlock.webApi\\senai.inlock.webApi.csproj",
+        "projectUniqueName": "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\2-Termo\\Sprint-2-BackEnd\\RepositorioGit\\Exercicio_InLock\\webApi\\senai.inlock.webApi\\senai.inlock.webApi\\senai.inlock.webApi.csproj",
         "projectName": "senai.inlock.webApi",
-        "projectPath": "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\2-Termo\\Sprint-2-BackEnd\\RepositorioGit\\Projeto_InLock\\webApi\\senai.inlock.webApi\\senai.inlock.webApi\\senai.inlock.webApi.csproj",
+        "projectPath": "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\2-Termo\\Sprint-2-BackEnd\\RepositorioGit\\Exercicio_InLock\\webApi\\senai.inlock.webApi\\senai.inlock.webApi\\senai.inlock.webApi.csproj",
         "packagesPath": "C:\\Users\\Vitor Manoel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\2-Termo\\Sprint-2-BackEnd\\RepositorioGit\\Projeto_InLock\\webApi\\senai.inlock.webApi\\senai.inlock.webApi\\obj\\",
+        "outputPath": "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\2-Termo\\Sprint-2-BackEnd\\RepositorioGit\\Exercicio_InLock\\webApi\\senai.inlock.webApi\\senai.inlock.webApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Vitor Manoel\\AppData\\Roaming\\NuGet\\NuGet.Config",

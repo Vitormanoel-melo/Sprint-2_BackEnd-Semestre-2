@@ -26,6 +26,11 @@ namespace senai_filmes_webApi.Controllers
             _usuarioRepository = new UsuarioRepository();
         }
 
+        /// <summary>
+        /// Faz a autenticação do usuário
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         [HttpPost("Login")]
         public IActionResult Logar(UsuarioDomain login)
         {

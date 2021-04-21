@@ -23,6 +23,9 @@ namespace senai.inlock.webApi.Interfaces
         JogoDomain BuscarPorId(int id);
 
 
+        JogoDomain BuscarPorNome(string nome);
+
+
         /// <summary>
         /// Método que cadastra um jogo
         /// </summary>

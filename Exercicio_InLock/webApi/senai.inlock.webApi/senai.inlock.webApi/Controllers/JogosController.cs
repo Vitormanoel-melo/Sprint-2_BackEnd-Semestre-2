@@ -70,18 +70,25 @@ namespace senai.inlock.webApi.Controllers
         [HttpPost]
         public IActionResult Post(JogoDomain jogo)
         {
-            try
-            {
-                _jogoRepository.Cadastrar(jogo);
+            JogoDomain jogoBuscado = _jogoRepository.BuscarPorNome(jogo.nomeJogo);
 
-                return StatusCode(201);
-            }
-            catch (Exception codErro)
+            if (jogoBuscado == null)
             {
 
-                return BadRequest(codErro);
+                try
+                {
+                    _jogoRepository.Cadastrar(jogo);
+
+                    return StatusCode(201);
+                }
+                catch (Exception codErro)
+                {
+
+                    return BadRequest(codErro);
+                }
             }
 
+            return BadRequest("Não é possível cadastrar este jogo pois ele já existe!");
         }
 
 

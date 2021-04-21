@@ -125,3 +125,10 @@ C:\Users\Vitor Manoel\OneDrive\Área de Trabalho\2-Termo\Sprint-2-BackEnd\Reposi
 C:\Users\Vitor Manoel\OneDrive\Área de Trabalho\2-Termo\Sprint-2-BackEnd\RepositorioGit\senai_filmes_webApi\senai_filmes_webApi\senai_filmes_webApi\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Vitor Manoel\OneDrive\Área de Trabalho\2-Termo\Sprint-2-BackEnd\RepositorioGit\senai_filmes_webApi\senai_filmes_webApi\senai_filmes_webApi\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Vitor Manoel\OneDrive\Área de Trabalho\2-Termo\Sprint-2-BackEnd\RepositorioGit\senai_filmes_webApi\senai_filmes_webApi\senai_filmes_webApi\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Vitor Manoel\OneDrive\Área de Trabalho\2-Termo\Sprint-2-BackEnd\RepositorioGit\senai_filmes_webApi\senai_filmes_webApi\senai_filmes_webApi\bin\Debug\net5.0\senai_filmes_webApi.xml
+C:\Users\Vitor Manoel\OneDrive\Área de Trabalho\2-Termo\Sprint-2-BackEnd\RepositorioGit\senai_filmes_webApi\senai_filmes_webApi\senai_filmes_webApi\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\Users\Vitor Manoel\OneDrive\Área de Trabalho\2-Termo\Sprint-2-BackEnd\RepositorioGit\senai_filmes_webApi\senai_filmes_webApi\senai_filmes_webApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Vitor Manoel\OneDrive\Área de Trabalho\2-Termo\Sprint-2-BackEnd\RepositorioGit\senai_filmes_webApi\senai_filmes_webApi\senai_filmes_webApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Vitor Manoel\OneDrive\Área de Trabalho\2-Termo\Sprint-2-BackEnd\RepositorioGit\senai_filmes_webApi\senai_filmes_webApi\senai_filmes_webApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Vitor Manoel\OneDrive\Área de Trabalho\2-Termo\Sprint-2-BackEnd\RepositorioGit\senai_filmes_webApi\senai_filmes_webApi\senai_filmes_webApi\obj\Debug\net5.0\senai_filmes_webApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Vitor Manoel\OneDrive\Área de Trabalho\2-Termo\Sprint-2-BackEnd\RepositorioGit\senai_filmes_webApi\senai_filmes_webApi\senai_filmes_webApi\obj\Debug\net5.0\senai_filmes_webApi.xml
