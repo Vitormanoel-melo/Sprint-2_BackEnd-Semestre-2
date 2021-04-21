@@ -51,20 +51,9 @@ WHERE idEstudio = 1;
 GO
 
 
--- Comandos Adicionais
-
-SELECT * FROM tiposUsuarios;
-GO
-
-
 SELECT idJogo, nomeJogo, descricao, dataLancamento, valor, jogos.idEstudio, nomeEstudio FROM jogos
 INNER JOIN estudios
 ON jogos.idEstudio = estudios.idEstudio;
-GO
-
-
-SELECT * FROM jogos
-WHERE idEstudio = 1;
 GO
 
 

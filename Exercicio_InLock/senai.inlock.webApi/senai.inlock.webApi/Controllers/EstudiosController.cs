@@ -18,10 +18,12 @@ namespace senai.inlock.webApi.Controllers
     public class EstudiosController : ControllerBase
     {
         private IEstudioRepository _estudioRepository { get; set; }
+        private IJogoRepository _jogoRepository { get; set; }
 
         public EstudiosController()
         {
             _estudioRepository = new EstudioRepository();
+            _jogoRepository = new JogoRepository();
         }
 
 
@@ -39,7 +41,7 @@ namespace senai.inlock.webApi.Controllers
 
             foreach (EstudioDomain item in lista)
             {
-                List<JogoDomain> jogos = _estudioRepository.ListarJogos(item.idEstudio);
+                List<JogoDomain> jogos = _jogoRepository.ListarJogos(item.idEstudio);
 
                 object obj = new { item.idEstudio, item.nomeEstudio, jogos };
 

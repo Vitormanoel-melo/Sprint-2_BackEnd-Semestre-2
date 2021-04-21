@@ -42,12 +42,5 @@ namespace senai.inlock.webApi.Interfaces
         /// <param name="estudio">Objeto estudio com as novas informações</param>
         void Atualizar(int id, EstudioDomain estudio);
 
-
-        /// <summary>
-        /// Lista os jogos de acordo com o id do estúdio
-        /// </summary>
-        /// <param name="id">id do estúdio do jogo</param>
-        /// <returns>Uma lista de jogos</returns>
-        List<JogoDomain> ListarJogos(int id);
     }
 }

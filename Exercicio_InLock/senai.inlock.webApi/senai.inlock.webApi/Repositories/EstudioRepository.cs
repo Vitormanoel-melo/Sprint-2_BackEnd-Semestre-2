@@ -157,51 +157,5 @@ namespace senai.inlock.webApi.Repositories
         }
 
 
-        /// <summary>
-        /// Lista os jogos de acordo com o id do estúdio
-        /// </summary>
-        /// <param name="id">id do estúdio do jogo</param>
-        /// <returns>Uma lista de jogos</returns>
-        public List<JogoDomain> ListarJogos(int id)
-        {
-            List<JogoDomain> lista = new List<JogoDomain>();
-
-            using (SqlConnection con = new SqlConnection(stringConexao))
-            {
-                string querySelect = "SELECT idJogo, nomeJogo, descricao, dataLancamento, valor, jogos.idEstudio, estudios.idEstudio, nomeEstudio FROM jogos INNER JOIN estudios ON jogos.idEstudio = estudios.idEstudio WHERE jogos.idEstudio = @ID";
-
-                using (SqlCommand cmd = new SqlCommand(querySelect, con))
-                {
-                    con.Open();
-
-                    cmd.Parameters.AddWithValue("@ID", id);
-
-                    SqlDataReader rdr = cmd.ExecuteReader();
-
-                    while (rdr.Read())
-                    {
-                        JogoDomain jogo = new JogoDomain
-                        {
-                            idJogo = Convert.ToInt32(rdr["idJogo"]),
-                            nomeJogo = rdr["nomeJogo"].ToString(),
-                            descricao = rdr["descricao"].ToString(),
-                            dataLancamento = Convert.ToDateTime(rdr["dataLancamento"]),
-                            valor = Convert.ToDouble(rdr["valor"]),
-                            idEstudio = Convert.ToInt32(rdr["idEstudio"]),
-                            estudio = new EstudioDomain
-                            {
-                                idEstudio = Convert.ToInt32(rdr["idEstudio"]),
-                                nomeEstudio = rdr["nomeEstudio"].ToString()
-                            }
-                        };
-
-                        lista.Add(jogo);
-                    }
-                }
-            }
-
-            return lista;
-        }
-
     }
 }

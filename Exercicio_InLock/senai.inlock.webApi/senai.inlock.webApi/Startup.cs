@@ -4,9 +4,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace senai.inlock.webApi
@@ -18,6 +21,7 @@ namespace senai.inlock.webApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
             services
                 .AddAuthentication(options =>
                 {
@@ -44,6 +48,15 @@ namespace senai.inlock.webApi
                         ValidAudience = "InLock.webApi"
                     };
                 });
+
+                services.AddSwaggerGen(c =>
+                {
+                    c.SwaggerDoc("v1", new OpenApiInfo{Version = "v1", Title = "InLock.webApi" });
+
+                    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                    c.IncludeXmlComments(xmlPath);
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +68,16 @@ namespace senai.inlock.webApi
             }
 
             app.UseRouting();
+
+            app.UseSwagger();
+
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
+            });
+
 
             app.UseAuthentication();
 

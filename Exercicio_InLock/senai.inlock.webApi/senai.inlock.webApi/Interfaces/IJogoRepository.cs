@@ -46,5 +46,13 @@ namespace senai.inlock.webApi.Interfaces
         /// </summary>
         /// <param name="id">id do jogo que será deletado</param>
         void Deletar(int id);
+
+
+        /// <summary>
+        /// Lista os jogos de acordo com o id do estúdio
+        /// </summary>
+        /// <param name="id">id do estúdio do jogo</param>
+        /// <returns>Uma lista de jogos</returns>
+        List<JogoDomain> ListarJogos(int id);
     }
 }
