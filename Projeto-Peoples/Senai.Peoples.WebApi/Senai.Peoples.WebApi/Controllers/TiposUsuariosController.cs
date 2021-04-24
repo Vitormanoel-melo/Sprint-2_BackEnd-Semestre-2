@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Senai.Peoples.WebApi.Domains;
 using Senai.Peoples.WebApi.Interfaces;
@@ -23,6 +24,12 @@ namespace Senai.Peoples.WebApi.Controllers
             _tipoUsuario = new TipoUsuarioRepository();
         }
 
+
+        /// <summary>
+        /// Lista todos os tiposUsuarios
+        /// </summary>
+        /// <returns>Um status code 200 - Ok e uma lista de tiposUsuarios</returns>
+        [Authorize(Roles = "2")]
         [HttpGet]
         public IActionResult Get()
         {
@@ -32,6 +39,12 @@ namespace Senai.Peoples.WebApi.Controllers
         }
 
 
+        /// <summary>
+        /// Busca um tipoUsuario pelo id
+        /// </summary>
+        /// <param name="id">id do tipoUsuario que será buscado</param>
+        /// <returns>Um status code 200 - Ok e um objeto tipoUsuario encontrado ou Not Found se não for encontrado</returns>
+        [Authorize(Roles = "2")]
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -55,6 +68,12 @@ namespace Senai.Peoples.WebApi.Controllers
         }
 
 
+        /// <summary>
+        /// Deleta um tipoUsuario pelo seu id
+        /// </summary>
+        /// <param name="id">id do tipoUsuario que será deletado</param>
+        /// <returns>Um status code 204 - No content ou NotFound</returns>
+        [Authorize(Roles = "2")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
@@ -77,6 +96,13 @@ namespace Senai.Peoples.WebApi.Controllers
         }
 
 
+        /// <summary>
+        /// Atualiza um tipoUsuario existente
+        /// </summary>
+        /// <param name="id">id do tipoUsuario que será deletado</param>
+        /// <param name="tipoUsuario">Objeto tipoUsuario com as novas informações</param>
+        /// <returns>Um status code 204 - No content</returns>
+        [Authorize(Roles = "2")]
         [HttpPut("{id}")]
         public IActionResult Put(int id, TipoUsuarioDomain tipoUsuario)
         {
@@ -88,7 +114,7 @@ namespace Senai.Peoples.WebApi.Controllers
                 {
                     _tipoUsuario.Atualizar(id, tipoUsuario);
 
-                    return Ok();
+                    return StatusCode(204);
                 }
                 catch (Exception codErro)
                 {

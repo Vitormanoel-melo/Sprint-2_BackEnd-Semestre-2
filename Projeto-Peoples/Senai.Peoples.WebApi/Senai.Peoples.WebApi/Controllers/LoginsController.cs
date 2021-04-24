@@ -28,6 +28,11 @@ namespace Senai.Peoples.WebApi.Controllers
         }
 
 
+        /// <summary>
+        /// Faz o login do usuário
+        /// </summary>
+        /// <param name="login">Objeto login com email e senha do usuário</param>
+        /// <returns>Status code 200 - Ok e um token ou Status code 404 - NotFound caso o usuário não seja encontrado</returns>
         [HttpPost("Login")]
         public IActionResult Logar(LoginDomain login)
         {
@@ -40,7 +45,7 @@ namespace Senai.Peoples.WebApi.Controllers
                 {
                     new Claim(JwtRegisteredClaimNames.Email, usuario.email),
                     new Claim(JwtRegisteredClaimNames.Jti, usuario.idUsuario.ToString()),
-                    new Claim(ClaimTypes.Role, _loginRepository.BuscarPermissao(usuario.idUsuario))
+                    new Claim(ClaimTypes.Role, usuario.permissao.ToString())
                 };
 
                 var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("peoples-chave-autenticacao"));

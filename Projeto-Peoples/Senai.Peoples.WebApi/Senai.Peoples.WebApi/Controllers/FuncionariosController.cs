@@ -28,7 +28,7 @@ namespace Senai.Peoples.WebApi.Controllers
         /// Lista todos os funcionários
         /// </summary>
         /// <returns>Status code Ok e a listaFuncionario</returns>
-        [Authorize(Roles = "administrador")]
+        [Authorize(Roles = "2")]
         [HttpGet]
         public IActionResult Get()
         {
@@ -45,6 +45,7 @@ namespace Senai.Peoples.WebApi.Controllers
         /// </summary>
         /// <param name="novoFuncionario">funcionário que vai ser cadastrado</param>
         /// <returns>status code 201 - Created</returns>
+        [Authorize(Roles = "2")]
         [HttpPost]
         public IActionResult Post(FuncionarioDomain novoFuncionario)
         {
@@ -80,6 +81,7 @@ namespace Senai.Peoples.WebApi.Controllers
         /// </summary>
         /// <param name="id">id do funcionario buscado</param>
         /// <returns> funcionario encontrado </returns>
+        [Authorize(Roles = "2")]
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -111,6 +113,7 @@ namespace Senai.Peoples.WebApi.Controllers
         /// </summary>
         /// <param name="id">id do funcionario que será deletado</param>
         /// <returns> status code 204 - No content</returns>
+        [Authorize(Roles = "2")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
@@ -151,6 +154,7 @@ namespace Senai.Peoples.WebApi.Controllers
         /// </summary>
         /// <param name="funcionario">objeto com as novas informações</param>
         /// <returns>status code 200 - Ok</returns>
+        [Authorize(Roles = "2")]
         [HttpPut]
         public IActionResult PutByIdCorpo(FuncionarioDomain funcionario)
         {
@@ -191,6 +195,7 @@ namespace Senai.Peoples.WebApi.Controllers
         /// </summary>
         /// <param name="nome">nome do funcionario que será buscado</param>
         /// <returns>objeto funcionario encontrado</returns>
+        [Authorize(Roles = "2")]
         [HttpGet("Buscar/{nome}")]
         public IActionResult GetByName(string nome)
         {
@@ -227,6 +232,7 @@ namespace Senai.Peoples.WebApi.Controllers
         /// retorna o nome completo de todos os funcionários
         /// </summary>
         /// <returns>lista de nomes completos ou NotFound </returns>
+        [Authorize(Roles = "2")]
         [HttpGet("NomesCompletos")]
         public IActionResult ListarNomeCompleto()
         {
@@ -257,12 +263,13 @@ namespace Senai.Peoples.WebApi.Controllers
             return NotFound("Nenhum funcionário encontrado");
         }
 
-        
+
         /// <summary>
         /// Lista os funcionarios em ordem crescente ou decrescente
         /// </summary>
         /// <param name="ordem">ordem em que será listado</param>
         /// <returns>lista de funcionarios</returns>
+        [Authorize(Roles = "2")]
         [HttpGet("ordenacao/{ordem}")]
         public IActionResult GetByOrder(string ordem)
         {

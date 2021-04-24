@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Senai.Peoples.WebApi.Domains;
 using Senai.Peoples.WebApi.Interfaces;
@@ -24,6 +25,11 @@ namespace Senai.Peoples.WebApi.Controllers
         }
 
 
+        /// <summary>
+        /// Lista todos os usuários
+        /// </summary>
+        /// <returns>Um status code 200 - Ok com a lista de usuários</returns>
+        [Authorize(Roles = "2")]
         [HttpGet]
         public IActionResult Get()
         {
@@ -33,7 +39,12 @@ namespace Senai.Peoples.WebApi.Controllers
         }
 
 
-
+        /// <summary>
+        /// Busca um usuário pelo seu id
+        /// </summary>
+        /// <param name="id">id do usuário que será buscado</param>
+        /// <returns>Status code 200 - Ok com o usuário encontrado ou Status Code 404 - NotFound se o usuário ão for encontrado</returns>
+        [Authorize(Roles = "2")]
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -58,7 +69,11 @@ namespace Senai.Peoples.WebApi.Controllers
         }
 
 
-
+        /// <summary>
+        /// Cadastra um usuário
+        /// </summary>
+        /// <param name="usuario">Objeto usuário que será cadastrado</param>
+        /// <returns>Status code 201 - Created</returns>
         [HttpPost("cadastrar")]
         public IActionResult Post(UsuarioDomain usuario)
         {
@@ -76,6 +91,13 @@ namespace Senai.Peoples.WebApi.Controllers
 
         }
 
+
+        /// <summary>
+        /// Deleta um usuário existente
+        /// </summary>
+        /// <param name="id">id do usuário que será deletado</param>
+        /// <returns>Status code 204 - No content, ou Status Code 404 - NotFound se o usuário não for encontrado</returns>
+        [Authorize(Roles = "2")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
@@ -102,6 +124,13 @@ namespace Senai.Peoples.WebApi.Controllers
         }
 
 
+        /// <summary>
+        /// Atualiza um usuário existente
+        /// </summary>
+        /// <param name="id">id do usuário que será atualizado</param>
+        /// <param name="usuario">Objeto usuário com as novas informações</param>
+        /// <returns>Status code 204 - No content, ou Status code 404 - Not Found se o usuário não for encontrado</returns>
+        [Authorize(Roles = "2")]
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, UsuarioDomain usuario)
         {
@@ -113,7 +142,7 @@ namespace Senai.Peoples.WebApi.Controllers
                 {
                     _usuarioRepository.Atualizar(id, usuario);
 
-                    return Ok();
+                    return NoContent();
                 }
                 catch (Exception codErro)
                 {

@@ -13,6 +13,11 @@ namespace Senai.Peoples.WebApi.Repositories
         private string stringConexao = "Data Source=LAPTOP-70KR9CNR; initial catalog=T_Peoples; user Id=sa; pwd=senai@132";
 
 
+        /// <summary>
+        /// Atualiza um tipoUsuario existente
+        /// </summary>
+        /// <param name="id">id do tipoUsuario que será deletado</param>
+        /// <param name="tipoUsuario">Objeto tipoUsuario com as novas informações</param>
         public void Atualizar(int id, TipoUsuarioDomain tipoUsuario)
         {
             using (SqlConnection con = new SqlConnection(stringConexao))
@@ -33,6 +38,11 @@ namespace Senai.Peoples.WebApi.Repositories
         }
 
 
+        /// <summary>
+        /// Busca um tipoUsuario pelo id
+        /// </summary>
+        /// <param name="id">id do tipoUsuario que será buscado</param>
+        /// <returns>Um objeto tipoUsuario buscado</returns>
         public TipoUsuarioDomain BuscarPorId(int id)
         {
             using (SqlConnection con = new SqlConnection(stringConexao))
@@ -64,6 +74,10 @@ namespace Senai.Peoples.WebApi.Repositories
         }
 
 
+        /// <summary>
+        /// Deleta um tipoUsuario existente
+        /// </summary>
+        /// <param name="id">id do tipoUsuario que será deletado</param>
         public void Deletar(int id)
         {
             using (SqlConnection con = new SqlConnection(stringConexao))
@@ -82,6 +96,10 @@ namespace Senai.Peoples.WebApi.Repositories
         }
 
 
+        /// <summary>
+        /// Lista todos os tiposUsuario
+        /// </summary>
+        /// <returns>Uma lista de tipoUsuario</returns>
         public List<TipoUsuarioDomain> Listar()
         {
             List<TipoUsuarioDomain> lista = new List<TipoUsuarioDomain>();

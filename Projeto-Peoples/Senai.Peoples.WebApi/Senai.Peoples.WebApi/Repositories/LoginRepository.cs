@@ -55,6 +55,11 @@ namespace Senai.Peoples.WebApi.Repositories
         }
 
 
+        /// <summary>
+        /// Busca uma permissão existente
+        /// </summary>
+        /// <param name="id">id da permissão que será encontrada</param>
+        /// <returns>uma permissão ou null</returns>
         public string BuscarPermissao(int id)
         {
             using (SqlConnection con = new SqlConnection(stringConexao))
@@ -80,6 +85,7 @@ namespace Senai.Peoples.WebApi.Repositories
 
             return null;
         }
+
 
     }
 }

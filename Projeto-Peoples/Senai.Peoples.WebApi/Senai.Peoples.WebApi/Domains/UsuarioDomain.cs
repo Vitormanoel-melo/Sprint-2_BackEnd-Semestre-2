@@ -23,6 +23,7 @@ namespace Senai.Peoples.WebApi.Domains
 
 
         [Required(ErrorMessage = "A senha é obrigatória!")]
+        [StringLength(maximumLength: 20, MinimumLength = 8, ErrorMessage = ("A senha deve ter de 8 a 20 caracteres!"))]
         public string senha { get; set; }
 
 
