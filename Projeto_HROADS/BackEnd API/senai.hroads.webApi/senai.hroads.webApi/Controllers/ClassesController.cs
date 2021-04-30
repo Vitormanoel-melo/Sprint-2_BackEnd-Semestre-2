@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using senai.hroads.webApi.Domains;
 using senai.hroads.webApi.Interfaces;
@@ -30,8 +31,15 @@ namespace senai.hroads.webApi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
+            try
+            {
+                return Ok(_classeRepository.Listar());
+            }
+            catch (Exception ex)
+            {
 
-            return Ok(_classeRepository.Listar());
+                return BadRequest(ex);
+            }
         }
 
         /// <summary>
@@ -39,17 +47,26 @@ namespace senai.hroads.webApi.Controllers
         /// </summary>
         /// <param name="id">Id da classe que será buscada</param>
         /// <returns>Status code 200 - OK com a classe encontrada ou 404 - NotFound caso não seja encontrada</returns>
+        [Authorize(Roles = "administrador")]
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            Classes classeBuscada = _classeRepository.BuscarPorId(id);
-
-            if (classeBuscada != null)
+            try
             {
-                return Ok(classeBuscada);
-            }
+                Classe classeBuscada = _classeRepository.BuscarPorId(id);
 
-            return NotFound("Classe não encontrada!");
+                if (classeBuscada != null)
+                {
+                    return Ok(classeBuscada);
+                }
+
+                return NotFound("Classe não encontrada!");
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex);
+            }
         }
 
 
@@ -58,19 +75,28 @@ namespace senai.hroads.webApi.Controllers
         /// </summary>
         /// <param name="novaClasse">Objeto nova classe com as informações</param>
         /// <returns>Status code 201- Created se a classe foi cadastrada ou BadRequest caso ela já exista</returns>
+        [Authorize(Roles = "administrador")]
         [HttpPost]
-        public IActionResult Post(Classes novaClasse)
+        public IActionResult Post(Classe novaClasse)
         {
-            Classes classeBuscada = _classeRepository.BuscarPorNome(novaClasse.nomeClasse);
-
-            if (classeBuscada == null)
+            try
             {
-                _classeRepository.Cadastrar(novaClasse);
+                Classe classeBuscada = _classeRepository.BuscarPorNome(novaClasse.nomeClasse);
 
-                return StatusCode(201);
+                if (classeBuscada == null)
+                {
+                    _classeRepository.Cadastrar(novaClasse);
+
+                    return StatusCode(201);
+                }
+
+                return BadRequest("Não é possível cadastrar essa classe pois ela já existe");
             }
+            catch (Exception codErro)
+            {
 
-            return BadRequest("Não é possível cadastrar essa classe pois ela já existe");
+                return BadRequest(codErro);
+            }
         }
 
         /// <summary>
@@ -79,26 +105,37 @@ namespace senai.hroads.webApi.Controllers
         /// <param name="id">Id da classe que será atualizada</param>
         /// <param name="classeAtualizada">Objeto classeAtualizada com as novas informações</param>
         /// <returns>Status code 204 - No content caso seja atualizado ou NotFound caso a classe não seja encontrada </returns>
+        [Authorize(Roles = "administrador")]
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Classes classeAtualizada)
+        public IActionResult Put(int id, Classe classeAtualizada)
         {
-            Classes classeBuscada = _classeRepository.BuscarPorId(id);
 
-            if (classeBuscada != null)
+            try
             {
-                bool validacao = _classeRepository.Atualizar(id, classeAtualizada);
+                Classe classeBuscada = _classeRepository.BuscarPorId(id);
 
-                if(validacao == true)
+                if (classeBuscada != null)
                 {
-                    return StatusCode(204);
+                    bool validacao = _classeRepository.Atualizar(id, classeAtualizada);
+
+                    if (validacao == true)
+                    {
+                        return StatusCode(204);
+                    }
+                    else
+                    {
+                        return BadRequest("Já existe uma classe com esse nome");
+                    }
                 }
-                else
-                {
-                    return BadRequest("Já existe uma classe com esse nome");
-                }
+
+                return NotFound("Classe não encontrada");
+            }
+            catch (Exception codErro)
+            {
+
+                return BadRequest(codErro);
             }
 
-            return NotFound("Classe não encontrada");
         }
 
         /// <summary>
@@ -106,17 +143,26 @@ namespace senai.hroads.webApi.Controllers
         /// </summary>
         /// <param name="id">Id da classe que será deletada</param>
         /// <returns>Status code 204 - No Content caso seja deletado ou NotFound caso não seja encontrado</returns>
+        [Authorize(Roles = "administrador")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            if (_classeRepository.BuscarPorId(id) != null)
+            try
             {
-                _classeRepository.Deletar(id);
+                if (_classeRepository.BuscarPorId(id) != null)
+                {
+                    _classeRepository.Deletar(id);
 
-                return StatusCode(204);
+                    return StatusCode(204);
+                }
+
+                return NotFound("Classe não encontrada");
             }
+            catch (Exception ex)
+            {
 
-            return NotFound("Classe não encontrada");
+                return BadRequest(ex);
+            }
         }
 
 

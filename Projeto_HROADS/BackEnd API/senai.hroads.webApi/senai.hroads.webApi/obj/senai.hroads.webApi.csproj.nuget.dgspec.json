@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\Projeto_HROADS\\BackEnd API\\senai.hroads.webApi\\senai.hroads.webApi\\senai.hroads.webApi.csproj": {}
+    "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\RepositorioGit\\Projeto_HROADS\\BackEnd API\\senai.hroads.webApi\\senai.hroads.webApi\\senai.hroads.webApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\Projeto_HROADS\\BackEnd API\\senai.hroads.webApi\\senai.hroads.webApi\\senai.hroads.webApi.csproj": {
+    "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\RepositorioGit\\Projeto_HROADS\\BackEnd API\\senai.hroads.webApi\\senai.hroads.webApi\\senai.hroads.webApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\Projeto_HROADS\\BackEnd API\\senai.hroads.webApi\\senai.hroads.webApi\\senai.hroads.webApi.csproj",
+        "projectUniqueName": "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\RepositorioGit\\Projeto_HROADS\\BackEnd API\\senai.hroads.webApi\\senai.hroads.webApi\\senai.hroads.webApi.csproj",
         "projectName": "senai.hroads.webApi",
-        "projectPath": "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\Projeto_HROADS\\BackEnd API\\senai.hroads.webApi\\senai.hroads.webApi\\senai.hroads.webApi.csproj",
+        "projectPath": "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\RepositorioGit\\Projeto_HROADS\\BackEnd API\\senai.hroads.webApi\\senai.hroads.webApi\\senai.hroads.webApi.csproj",
         "packagesPath": "C:\\Users\\Vitor Manoel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\Projeto_HROADS\\BackEnd API\\senai.hroads.webApi\\senai.hroads.webApi\\obj\\",
+        "outputPath": "C:\\Users\\Vitor Manoel\\OneDrive\\Área de Trabalho\\RepositorioGit\\Projeto_HROADS\\BackEnd API\\senai.hroads.webApi\\senai.hroads.webApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Vitor Manoel\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.5, )"
@@ -53,6 +61,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.5, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.11.0, )"
             }
           },
           "imports": [

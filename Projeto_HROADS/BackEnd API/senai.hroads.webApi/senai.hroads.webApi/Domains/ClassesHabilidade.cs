@@ -19,13 +19,13 @@ namespace senai.hroads.webApi.Domains
         public int idHabilidade { get; set; }
 
         [ForeignKey("idClasse")]
-        public Classes classe { get; set; }
+        public Classe classe { get; set; }
 
         [ForeignKey("idHabilidade")]
-        public Habilidades habilidade { get; set; }
+        public Habilidade habilidade { get; set; }
 
-        public List<Classes> ListaClasses { get; set; }
-        public List<Habilidades> ListaHabilidades { get; set; }
+        public List<Classe> ListaClasses { get; set; }
+        public List<Habilidade> ListaHabilidades { get; set; }
 
 
     }

@@ -36,6 +36,6 @@ namespace senai.hroads.webApi.Domains
         [ForeignKey("idTipoUsuario")]
         public TiposUsuario tipoUsuario { get; set; }
 
-        public List<Personagens> personagens { get; set; }
+        public List<Personagem> personagens { get; set; }
     }
 }

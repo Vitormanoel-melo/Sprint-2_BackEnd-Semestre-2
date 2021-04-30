@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using senai.hroads.webApi.Domains;
 using senai.hroads.webApi.Interfaces;
 using senai.hroads.webApi.Repositories;
+using senai.hroads.webApi.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +32,15 @@ namespace senai.hroads.webApi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_habilidadeRepository.Listar());
+            try
+            {
+                return Ok(_habilidadeRepository.Listar());
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex);
+            }
         }
 
         /// <summary>
@@ -38,12 +48,13 @@ namespace senai.hroads.webApi.Controllers
         /// </summary>
         /// <param name="id">Id da habilidade que será buscada</param>
         /// <returns>Um Status Code 200 - OK com uma habilidade encontrada ou NotFound se não encontrar</returns>
+        [Authorize(Roles = "administrador")]
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
             try
             {
-                Habilidades habilidadeBuscada = _habilidadeRepository.BuscarPorId(id);
+                Habilidade habilidadeBuscada = _habilidadeRepository.BuscarPorId(id);
 
                 if(habilidadeBuscada != null)
                 {
@@ -64,28 +75,28 @@ namespace senai.hroads.webApi.Controllers
         /// </summary>
         /// <param name="novaHabilidade">Objeto novaHabilidade com as informações</param>
         /// <returns>Um status code 201 - Created</returns>
+        [Authorize(Roles = "administrador")]
         [HttpPost]
-        public IActionResult Post(Habilidades novaHabilidade)
+        public IActionResult Post(Habilidade novaHabilidade)
         {
-            Habilidades habilidadeBuscada = _habilidadeRepository.BuscarPorNome(novaHabilidade.nome);
-
             try
             {
+                Habilidade habilidadeBuscada = _habilidadeRepository.BuscarPorNome(novaHabilidade.nome);
+
                 if (habilidadeBuscada == null)
                 {
                     _habilidadeRepository.Cadastrar(novaHabilidade);
 
                     return StatusCode(201);
                 }
+
+                return BadRequest("Já existe uma habilidade cadastrada com esse nome");
             }
             catch (Exception codErro)
             {
 
                 return BadRequest(codErro);
             }
-
-            // revisar
-            return BadRequest("Já existe uma habilidade cadastrada com esse nome");
         }
 
         /// <summary>
@@ -94,24 +105,34 @@ namespace senai.hroads.webApi.Controllers
         /// <param name="id">Id da habilidade que será atualizada</param>
         /// <param name="habilidadeAtualizada">Objeto habilidadeAtualizada com as novas informações</param>
         /// <returns>Um status code 204 - NoContent se for atualizado ou NotFound caso a habilidade não seja encontrada</returns>
+        [Authorize(Roles = "administrador")]
         [HttpPatch("{id}")]
-        public IActionResult Patch(int id, Habilidades habilidadeAtualizada)
+        public IActionResult Patch(int id, HabilidadeViewModel habilidadeAtualizada)
         {
-            Habilidades habilidadeBuscada = _habilidadeRepository.BuscarPorId(id);
-
-            if (habilidadeBuscada != null)
+            try
             {
-                bool validacao = _habilidadeRepository.Atualizar(id, habilidadeAtualizada);
+                Habilidade habilidadeBuscada = _habilidadeRepository.BuscarPorId(id);
 
-                if (validacao == true)
+                if (habilidadeAtualizada != null)
                 {
+                    habilidadeBuscada = new Habilidade()
+                    {
+                        nome = habilidadeAtualizada.nome,
+                        idTipoHabilidade = habilidadeAtualizada.idTipoHabilidade
+                    };
+
+                    _habilidadeRepository.Atualizar(id, habilidadeBuscada);
+
                     return StatusCode(204);
                 }
 
-                return BadRequest("Já existe uma habilidade cadastrada com esse nome");
+                return NotFound("Habilidade não encontrada!");
             }
+            catch (Exception ex)
+            {
 
-            return NotFound("Habilidade não encontrada!");
+                return BadRequest(ex);
+            }
         }
 
         /// <summary>
@@ -119,6 +140,7 @@ namespace senai.hroads.webApi.Controllers
         /// </summary>
         /// <param name="id">Id da habilidade que será deletada</param>
         /// <returns>Um status code 204 - NoContent caso seja deletado ou NotFound caso não seja encontrado</returns>
+        [Authorize(Roles = "administrador")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

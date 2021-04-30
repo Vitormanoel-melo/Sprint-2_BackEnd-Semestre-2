@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace senai.hroads.webApi.Domains
 {
     [Table("Personagens")]
-    public class Personagens
+    public class Personagem
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -34,11 +34,11 @@ namespace senai.hroads.webApi.Domains
         [Column(TypeName = "DATE")]
         public DateTime dataCriacao { get; set; }
 
-
+        [Required(ErrorMessage = "O personagem precisa ter uma classe")]
         public int idClasse { get; set; }
 
 
         [ForeignKey("idClasse")]
-        public Classes classe { get; set; }
+        public Classe classe { get; set; }
     }
 }

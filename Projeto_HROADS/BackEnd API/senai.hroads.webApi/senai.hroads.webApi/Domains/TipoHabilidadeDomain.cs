@@ -7,16 +7,15 @@ using System.Threading.Tasks;
 
 namespace senai.hroads.webApi.Domains
 {
-    [Table("Classes")]
-    public class Classes
+    [Table("TiposHabilidade")]
+    public class TipoHabilidadeDomain
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int idClasse { get; set; }
+        public int idTipoHabilidade { get; set; }
 
-        [Column("Nome", TypeName = "VARCHAR(150)")]
-        [Required(ErrorMessage = "O nome da classe é obrigatório!")]
-        public string nomeClasse { get; set; }
-
+        [Column(TypeName = "VARCHAR(250)")]
+        [Required(ErrorMessage = "A descrição do tipo de habilidade é obrigatória!")]
+        public string titulo { get; set; }
     }
 }

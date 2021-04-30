@@ -18,10 +18,10 @@ namespace senai.hroads.webApi.Repositories
         /// <param name="id"></param>
         /// <param name="tipoAtualizado"></param>
         /// <returns>true se atualizar ou false se não atualizar</returns>
-        public bool Atualizar(int id, TiposHabilidade tipoAtualizado)
+        public bool Atualizar(int id, TipoHabilidadeDomain tipoAtualizado)
         {
-            TiposHabilidade tipoBuscado         = ctx.TiposHabilidade.Find(id);
-            TiposHabilidade tipoBuscadoTitulo   = ctx.TiposHabilidade.FirstOrDefault(t => t.titulo == tipoAtualizado.titulo);
+            TipoHabilidadeDomain tipoBuscado         = BuscarPorId(id);
+            TipoHabilidadeDomain tipoBuscadoTitulo   = ctx.TiposHabilidade.FirstOrDefault(t => t.titulo == tipoAtualizado.titulo);
 
             if (tipoAtualizado.titulo != null && tipoBuscadoTitulo == null)
             {
@@ -42,7 +42,7 @@ namespace senai.hroads.webApi.Repositories
         /// </summary>
         /// <param name="id">Id do tipo habilidade que será buscado</param>
         /// <returns>Um objeto TiposHabilidade encontrado</returns>
-        public TiposHabilidade BuscarPorId(int id)
+        public TipoHabilidadeDomain BuscarPorId(int id)
         {
             return ctx.TiposHabilidade.FirstOrDefault(t => t.idTipoHabilidade == id);
         }
@@ -52,7 +52,7 @@ namespace senai.hroads.webApi.Repositories
         /// </summary>
         /// <param name="titulo">Título da habilidade que será buscada</param>
         /// <returns>Um tipo de habilidade encontrada</returns>
-        public TiposHabilidade BuscarPorTitulo(string titulo)
+        public TipoHabilidadeDomain BuscarPorTitulo(string titulo)
         {
             return ctx.TiposHabilidade.FirstOrDefault(t => t.titulo == titulo);
         }
@@ -61,7 +61,7 @@ namespace senai.hroads.webApi.Repositories
         /// Cadastra um tipo de habilidade
         /// </summary>
         /// <param name="novoTipo">Objeto novoTipo que será cadastrado</param>
-        public void Cadastrar(TiposHabilidade novoTipo)
+        public void Cadastrar(TipoHabilidadeDomain novoTipo)
         {
             ctx.TiposHabilidade.Add(novoTipo);
 
@@ -83,7 +83,7 @@ namespace senai.hroads.webApi.Repositories
         /// Lista todos os tipos de habilidade
         /// </summary>
         /// <returns>Uma lista de TiposHabilidade</returns>
-        public List<TiposHabilidade> Listar()
+        public List<TipoHabilidadeDomain> Listar()
         {
             return ctx.TiposHabilidade.ToList();
         }

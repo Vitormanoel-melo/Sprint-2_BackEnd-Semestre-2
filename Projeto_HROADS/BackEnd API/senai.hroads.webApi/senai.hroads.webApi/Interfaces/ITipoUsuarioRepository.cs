@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace senai.hroads.webApi.Interfaces
 {
-    interface ITiposUsuarioRepository
+    interface ITipoUsuarioRepository
     {
         /// <summary>
         /// Lista todos os tipos usuario

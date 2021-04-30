@@ -18,28 +18,27 @@ namespace senai.hroads.webApi.Repositories
         /// </summary>
         /// <param name="id">Id da habilidade que será atualizada</param>
         /// <param name="habilidadeAtualizada">Objeto habilidadeAtualizada com as novas informações</param>
-        public bool Atualizar(int id, Habilidades habilidadeAtualizada)
+        public void Atualizar(int id, Habilidade habilidadeAtualizada)
         {
-            Habilidades habilidadeBuscada   = ctx.Habilidades.FirstOrDefault(h => h.idHabilidade == id);
-            Habilidades habilidadeNome      = ctx.Habilidades.FirstOrDefault(h => h.nome == habilidadeAtualizada.nome);
+            Habilidade habilidadeBuscada   = BuscarPorId(id);
+            Habilidade habilidadeNome      = ctx.Habilidades.FirstOrDefault(h => h.nome == habilidadeAtualizada.nome);
 
-            if (habilidadeAtualizada.nome != null && habilidadeNome == null)
+            if (habilidadeAtualizada.nome != null)
             {
-                habilidadeBuscada.nome = habilidadeAtualizada.nome;
-
-                if (ctx.TiposHabilidade.Find(habilidadeAtualizada.idTipoHabilidade) != null)
+                if (habilidadeNome == null)
                 {
-                    habilidadeBuscada.idTipoHabilidade = habilidadeAtualizada.idTipoHabilidade;
+                    habilidadeBuscada.nome = habilidadeAtualizada.nome;
                 }
-
-                ctx.Habilidades.Update(habilidadeBuscada);
-
-                ctx.SaveChanges();
-
-                return true;
             }
 
-            return false;
+            if (ctx.TiposHabilidade.Find(habilidadeAtualizada.idTipoHabilidade) != null)
+            {
+                habilidadeBuscada.idTipoHabilidade = habilidadeAtualizada.idTipoHabilidade;
+            }
+
+            ctx.Habilidades.Update(habilidadeBuscada);
+
+            ctx.SaveChanges();
         }
 
         /// <summary>
@@ -47,7 +46,7 @@ namespace senai.hroads.webApi.Repositories
         /// </summary>
         /// <param name="id">Id da habilidade que será buscada</param>
         /// <returns>Uma habilidade encontrada</returns>
-        public Habilidades BuscarPorId(int id)
+        public Habilidade BuscarPorId(int id)
         {
             return ctx.Habilidades.Include(hab => hab.tipoHabilidade).FirstOrDefault(h => h.idHabilidade == id);
         }
@@ -57,9 +56,9 @@ namespace senai.hroads.webApi.Repositories
         /// </summary>
         /// <param name="nome">nome da habilidade buscada</param>
         /// <returns>Uma habilidade buscada ou null</returns>
-        public Habilidades BuscarPorNome(string nome)
+        public Habilidade BuscarPorNome(string nome)
         {
-            Habilidades habilidadeBuscada = ctx.Habilidades.FirstOrDefault(h => h.nome == nome);
+            Habilidade habilidadeBuscada = ctx.Habilidades.FirstOrDefault(h => h.nome == nome);
 
             if (habilidadeBuscada != null)
             {
@@ -73,7 +72,7 @@ namespace senai.hroads.webApi.Repositories
         /// Cadastra uma nova habilidade
         /// </summary>
         /// <param name="novaHabilidade">Objeto novaHabilidade com as informações para cadastro</param>
-        public void Cadastrar(Habilidades novaHabilidade)
+        public void Cadastrar(Habilidade novaHabilidade)
         {
             ctx.Habilidades.Add(novaHabilidade);
 
@@ -86,7 +85,7 @@ namespace senai.hroads.webApi.Repositories
         /// <param name="id">Id da habilidade que será deletada</param>
         public void Deletar(int id)
         {
-            Habilidades habilidadeBuscada = ctx.Habilidades.Find(id);
+            Habilidade habilidadeBuscada = BuscarPorId(id);
 
             ctx.Habilidades.Remove(habilidadeBuscada);
 
@@ -97,7 +96,7 @@ namespace senai.hroads.webApi.Repositories
         /// Lista todas as habilidades
         /// </summary>
         /// <returns>Uma lista de habilidades</returns>
-        public List<Habilidades> Listar()
+        public List<Habilidade> Listar()
         {
             return ctx.Habilidades.Include(h => h.tipoHabilidade).ToList();
         }

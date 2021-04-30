@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace senai.hroads.webApi.Domains
 {
     [Table("Habilidades")]
-    public class Habilidades
+    public class Habilidade
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -21,6 +21,6 @@ namespace senai.hroads.webApi.Domains
         public int idTipoHabilidade { get; set; }
 
         [ForeignKey("idTipoHabilidade")]
-        public TiposHabilidade tipoHabilidade { get; set; }
+        public TipoHabilidadeDomain tipoHabilidade { get; set; }
     }
 }

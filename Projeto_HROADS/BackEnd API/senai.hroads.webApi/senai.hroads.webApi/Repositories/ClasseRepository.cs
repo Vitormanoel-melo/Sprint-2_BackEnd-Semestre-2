@@ -17,13 +17,13 @@ namespace senai.hroads.webApi.Repositories
         /// </summary>
         /// <param name="classeAtualizada">Objeto classeAtualizada com as novas informações</param>
         /// <returns>true se atualizar ou false se não atualizar</returns>
-        public bool Atualizar(int id, Classes classeAtualizada)
+        public bool Atualizar(int id, Classe classeAtualizada)
         {
             // Busca uma classe pelo id passado como parâmetro
-            Classes classeBuscada = ctx.Classes.FirstOrDefault(c => c.idClasse == id);
+            Classe classeBuscada = BuscarPorId(id);
 
             // Busca uma classe pelo nomeClasse da classeAtualizada
-            Classes classeBuscadaNome   = ctx.Classes.FirstOrDefault(c => c.nomeClasse == classeAtualizada.nomeClasse);
+            Classe classeBuscadaNome   = ctx.Classes.FirstOrDefault(c => c.nomeClasse == classeAtualizada.nomeClasse);
 
             // Se o nomeClasse da classeAtualizada for diferente de null e se a classeBuscadaNome for igual a null
             // então executa 
@@ -47,7 +47,7 @@ namespace senai.hroads.webApi.Repositories
         /// </summary>
         /// <param name="id">Id da classe que será buscada</param>
         /// <returns>Um objeto Classe encontrado</returns>
-        public Classes BuscarPorId(int id)
+        public Classe BuscarPorId(int id)
         {
             return ctx.Classes.Find(id);
         }
@@ -57,9 +57,9 @@ namespace senai.hroads.webApi.Repositories
         /// </summary>
         /// <param name="nome">Nome da classe que será buscada</param>
         /// <returns>Uma classe encontrada</returns>
-        public Classes BuscarPorNome(string nome)
+        public Classe BuscarPorNome(string nome)
         {
-            Classes classeBuscada = ctx.Classes.FirstOrDefault(c => c.nomeClasse == nome);
+            Classe classeBuscada = ctx.Classes.FirstOrDefault(c => c.nomeClasse == nome);
 
             if (classeBuscada != null)
             {
@@ -73,7 +73,7 @@ namespace senai.hroads.webApi.Repositories
         /// Cadastra uma nova classe
         /// </summary>
         /// <param name="novaClasse">Objeto novaClasse que será cadastrado</param>
-        public void Cadastrar(Classes novaClasse)
+        public void Cadastrar(Classe novaClasse)
         {
             ctx.Classes.Add(novaClasse);
 
@@ -86,7 +86,7 @@ namespace senai.hroads.webApi.Repositories
         /// <param name="id">Id da classe que será deletada</param>
         public void Deletar(int id)
         {
-            Classes classeBuscada = ctx.Classes.Find(id);
+            Classe classeBuscada = ctx.Classes.Find(id);
 
             ctx.Classes.Remove(classeBuscada);
 
@@ -97,7 +97,7 @@ namespace senai.hroads.webApi.Repositories
         /// Lista todas as classes
         /// </summary>
         /// <returns>Uma lista de classes</returns>
-        public List<Classes> Listar()
+        public List<Classe> Listar()
         {
             return ctx.Classes.ToList();
         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using senai.hroads.webApi.Domains;
 using senai.hroads.webApi.Interfaces;
@@ -30,7 +31,15 @@ namespace senai.hroads.webApi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_tipoHabilidade.Listar());
+            try
+            {
+                return Ok(_tipoHabilidade.Listar());
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex);
+            }
         }
 
         /// <summary>
@@ -38,25 +47,26 @@ namespace senai.hroads.webApi.Controllers
         /// </summary>
         /// <param name="id">Id do tipo de habilidade buscado</param>
         /// <returns>Um Status Code 200 - Ok e um tipo de habilidade encontrado ou NotFound caso não encontre</returns>
+        [Authorize(Roles = "administrador")]
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            TiposHabilidade tipoBuscado = _tipoHabilidade.BuscarPorId(id);
-
-            if (tipoBuscado != null)
+            try
             {
-                try
+                TipoHabilidadeDomain tipoBuscado = _tipoHabilidade.BuscarPorId(id);
+
+                if (tipoBuscado != null)
                 {
                     return Ok(tipoBuscado);
                 }
-                catch (Exception codErro)
-                {
 
-                    return BadRequest(codErro);
-                }
+                return NotFound("Tipo de habilidade não encontrado!");
             }
+            catch (Exception ex)
+            {
 
-            return NotFound("Tipo de habilidade não encontrado!");
+                return BadRequest(ex);
+            }
         }
 
         /// <summary>
@@ -64,27 +74,28 @@ namespace senai.hroads.webApi.Controllers
         /// </summary>
         /// <param name="novoTipo">Objeto novo tipo com as informações para cadastro</param>
         /// <returns>UStatus code</returns>
+        [Authorize(Roles = "administrador")]
         [HttpPost]
-        public IActionResult Post(TiposHabilidade novoTipo)
+        public IActionResult Post(TipoHabilidadeDomain novoTipo)
         {
-            TiposHabilidade tipoBuscado = _tipoHabilidade.BuscarPorTitulo(novoTipo.titulo);
-
-            if (tipoBuscado == null)
+            try
             {
-                try
+                TipoHabilidadeDomain tipoBuscado = _tipoHabilidade.BuscarPorTitulo(novoTipo.titulo);
+
+                if (tipoBuscado == null)
                 {
                     _tipoHabilidade.Cadastrar(novoTipo);
 
                     return StatusCode(201);
                 }
-                catch (Exception codErro)
-                {
 
-                    return BadRequest(codErro);
-                }
+                return BadRequest("Este tipo de habilidade já existe!");
             }
+            catch (Exception ex)
+            {
 
-            return BadRequest("Este tipo de habilidade já existe!");
+                return BadRequest(ex);
+            }
         }
 
         /// <summary>
@@ -93,12 +104,13 @@ namespace senai.hroads.webApi.Controllers
         /// <param name="id">Id do tipo de habilidade que será atualizado</param>
         /// <param name="tipoAtualizado">Objeto tipoAtualizado com as novas informações</param>
         /// <returns>Um Status Code 204 - NoContent</returns>
+        [Authorize(Roles = "administrador")]
         [HttpPut("{id}")]
-        public IActionResult Put(int id, TiposHabilidade tipoAtualizado)
+        public IActionResult Put(int id, TipoHabilidadeDomain tipoAtualizado)
         {
-            if (_tipoHabilidade.BuscarPorId(id) != null)
+            try
             {
-                try
+                if (_tipoHabilidade.BuscarPorId(id) != null)
                 {
                     bool validacao = _tipoHabilidade.Atualizar(id, tipoAtualizado);
 
@@ -111,41 +123,43 @@ namespace senai.hroads.webApi.Controllers
                         return BadRequest("Não é possível atualizar pois já existe um tipo de habilidade com este título!");
                     }
                 }
-                catch (Exception codErro)
-                {
 
-                    return BadRequest(codErro);
-                }
+                return NotFound("Tipo de habilidade não encontrado!");
             }
+            catch (Exception ex)
+            {
 
-            return NotFound("Tipo de habilidade não encontrado!");
+                return BadRequest(ex);
             }
+        }
 
         /// <summary>
         /// Deleta um tipo de habilidade existente
         /// </summary>
         /// <param name="id">Id do tipo de habilidade que será deletado</param>
         /// <returns>Um status code 204 - NoContent ou NotFound</returns>
+        [Authorize(Roles = "administrador")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            if (_tipoHabilidade.BuscarPorId(id) != null)
+            try
             {
-                try
+                if (_tipoHabilidade.BuscarPorId(id) != null)
                 {
                     _tipoHabilidade.Deletar(id);
 
                     return StatusCode(204);
                 }
-                catch (Exception codErro)
-                {
 
-                    return BadRequest(codErro);
-                }
+                return NotFound("Tipo de habilidade não encontrado");
             }
+            catch (Exception ex)
+            {
 
-            return NotFound("Tipo de habilidade não encontrado");
+                return BadRequest(ex);
+            }
         }
+
 
     }
 }

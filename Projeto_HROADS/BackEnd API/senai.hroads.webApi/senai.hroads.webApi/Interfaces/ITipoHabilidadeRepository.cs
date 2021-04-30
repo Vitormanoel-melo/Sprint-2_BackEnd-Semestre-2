@@ -12,20 +12,20 @@ namespace senai.hroads.webApi.Interfaces
         /// Lista todos os tipos de habilidade
         /// </summary>
         /// <returns>Uma lista de TiposHabilidade</returns>
-        List<TiposHabilidade> Listar();
+        List<TipoHabilidadeDomain> Listar();
 
         /// <summary>
         /// Busca um tipo de habilidade existente
         /// </summary>
         /// <param name="id">Id do tipo habilidade que será buscado</param>
         /// <returns>Um objeto TiposHabilidade encontrado</returns>
-        TiposHabilidade BuscarPorId(int id);
+        TipoHabilidadeDomain BuscarPorId(int id);
 
         /// <summary>
         /// Cadastra um tipo de habilidade
         /// </summary>
         /// <param name="novoTipo">Objeto novoTipo que será cadastrado</param>
-        void Cadastrar(TiposHabilidade novoTipo);
+        void Cadastrar(TipoHabilidadeDomain novoTipo);
 
         /// <summary>
         /// Atualiza um tipo de habilidade existente
@@ -33,7 +33,7 @@ namespace senai.hroads.webApi.Interfaces
         /// <param name="id"></param>
         /// <param name="tipoAtualizado"></param>
         /// <returns>true se atualizar ou false se não atualizar</returns>
-        bool Atualizar(int id, TiposHabilidade tipoAtualizado);
+        bool Atualizar(int id, TipoHabilidadeDomain tipoAtualizado);
 
         /// <summary>
         /// Deleta um tipo de habilidade existente
@@ -46,6 +46,6 @@ namespace senai.hroads.webApi.Interfaces
         /// </summary>
         /// <param name="titulo">Título da habilidade que será buscada</param>
         /// <returns>Um tipo de habilidade encontrada</returns>
-        TiposHabilidade BuscarPorTitulo(string titulo);
+        TipoHabilidadeDomain BuscarPorTitulo(string titulo);
     }
 }
