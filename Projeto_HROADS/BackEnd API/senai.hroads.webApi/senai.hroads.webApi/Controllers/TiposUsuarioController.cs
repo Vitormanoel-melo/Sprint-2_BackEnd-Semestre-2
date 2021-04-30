@@ -24,18 +24,34 @@ namespace senai.hroads.webApi.Controllers
             _tipoUsuarioRepository = new TipoUsuarioRepository();
         }
 
+        /// <summary>
+        /// Lista todos os tipos de usuário
+        /// </summary>
+        /// <returns>Um status code 200 - OK e uma lista de tipos usuário</returns>
+        [Authorize(Roles = "administrador")]
         [HttpGet]
         public IActionResult Get()
         {
             return Ok(_tipoUsuarioRepository.Listar());
         }
 
+        /// <summary>
+        /// Busca um tipo de usuário existente
+        /// </summary>
+        /// <param name="id">Id do tipo de usuário que será buscado</param>
+        /// <returns>Um Status code 200 - Ok e um tipo de usuário encontrado</returns>
+        [Authorize(Roles = "administrador")]
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
             return Ok(_tipoUsuarioRepository.BuscarPorId(id));
         }
 
+        /// <summary>
+        /// Cadastra um novo tipo de usuário
+        /// </summary>
+        /// <param name="novoTipo">Objeto novoTipo que será com as informações para cadastro</param>
+        /// <returns>Um status code 201 - Created</returns>
         [Authorize(Roles = "administrador")]
         [HttpPost]
         public IActionResult Post(TiposUsuario novoTipo)
@@ -44,7 +60,7 @@ namespace senai.hroads.webApi.Controllers
             {
                 _tipoUsuarioRepository.Cadastrar(novoTipo);
 
-                return Ok();
+                return StatusCode(201);
             }
             catch (Exception codErro)
             {
@@ -53,6 +69,13 @@ namespace senai.hroads.webApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Atualiza um tipo de usuário existente
+        /// </summary>
+        /// <param name="id">Id do tipo de usuário que será atualizado</param>
+        /// <param name="tipoAtualizado">Objeto tipoAtualizado com as novas informações</param>
+        /// <returns>Um status code 204 - No content</returns>
+        [Authorize(Roles = "administrador")]
         [HttpPut("{id}")]
         public IActionResult Put(int id, TiposUsuario tipoAtualizado)
         {
@@ -74,6 +97,12 @@ namespace senai.hroads.webApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Deleta um tipo de usuário existente
+        /// </summary>
+        /// <param name="id">Id do tipo de usuário que será deletado</param>
+        /// <returns>Um status code 204 - No content</returns>
+        [Authorize(Roles = "administrador")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

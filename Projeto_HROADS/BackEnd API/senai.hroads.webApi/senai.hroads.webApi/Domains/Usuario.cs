@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace senai.hroads.webApi.Domains
 {
     [Table("Usuarios")]
-    public class Usuarios
+    public class Usuario
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

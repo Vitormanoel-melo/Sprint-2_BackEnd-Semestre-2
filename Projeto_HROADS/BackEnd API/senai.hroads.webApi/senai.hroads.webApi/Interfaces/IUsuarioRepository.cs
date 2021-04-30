@@ -12,27 +12,27 @@ namespace senai.hroads.webApi.Interfaces
         /// Lista todos os usuarios
         /// </summary>
         /// <returns>Uma lista de usuarios</returns>
-        List<Usuarios> Listar();
+        List<Usuario> Listar();
 
         /// <summary>
         /// Busca um usuário pelo id
         /// </summary>
         /// <param name="id">Id do usuario que será buscado</param>
         /// <returns>Um usuário encontrado ou null</returns>
-        Usuarios BuscarPorId(int id);
+        Usuario BuscarPorId(int id);
 
         /// <summary>
         /// Cadastra um usuário
         /// </summary>
         /// <param name="novoUsuario">Objeto novoUsuario que será cadastrado</param>
-        void Cadastrar(Usuarios novoUsuario);
+        void Cadastrar(Usuario novoUsuario);
 
         /// <summary>
         /// Atualiza um usuário existente
         /// </summary>
         /// <param name="id">Id do usuário que será atualizado</param>
         /// <param name="usuarioAtualizado">Objeto usuarioAtualizado com as novas informações</param>
-        void Atualizar(int id, Usuarios usuarioAtualizado);
+        void Atualizar(int id, Usuario usuarioAtualizado);
 
         /// <summary>
         /// Deleta um usuário existente
@@ -45,7 +45,7 @@ namespace senai.hroads.webApi.Interfaces
         /// </summary>
         /// <param name="email">E-mail do usuário que será buscado</param>
         /// <returns>Um usuário encontrado</returns>
-        Usuarios BuscarPorEmail(string email);
+        Usuario BuscarPorEmail(string email);
 
         /// <summary>
         /// Busca um usuário existente pelo email e senha
@@ -53,7 +53,7 @@ namespace senai.hroads.webApi.Interfaces
         /// <param name="email">E-mail do usuário que será buscado</param>
         /// <param name="senha">Senha do usuário que será buscado</param>
         /// <returns>Um usuário encontrado</returns>
-        Usuarios BuscarPorEmailSenha(string email, string senha);
+        Usuario BuscarPorEmailSenha(string email, string senha);
 
         string BuscarPermissao(int id);
     }

@@ -15,7 +15,7 @@ namespace senai.hroads.webApi.Contexts
         public DbSet<ClassesHabilidade> ClasseHabilidade { get; set; }
         public DbSet<Personagem> Personagens { get; set; }
         public DbSet<TiposUsuario> TiposUsuario { get; set; }
-        public DbSet<Usuarios> Usuarios { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -70,10 +70,10 @@ namespace senai.hroads.webApi.Contexts
                 new TiposUsuario { idTipoUsuario = 2, titulo = "jogador" });
 
 
-            modelBuilder.Entity<Usuarios>(entity =>
+            modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.HasData(
-                    new Usuarios
+                    new Usuario
                     {
                         idUsuario = 1,
                         nome = "Admin",
@@ -82,7 +82,7 @@ namespace senai.hroads.webApi.Contexts
                         senha = "admin",
                         idTipoUsuario = 1
                     },
-                    new Usuarios
+                    new Usuario
                     {
                         idUsuario = 2,
                         nome = "Jogador",

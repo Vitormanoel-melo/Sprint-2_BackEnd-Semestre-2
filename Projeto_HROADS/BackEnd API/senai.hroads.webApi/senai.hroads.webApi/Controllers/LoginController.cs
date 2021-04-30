@@ -31,7 +31,7 @@ namespace senai.hroads.webApi.Controllers
         [HttpPost]
         public IActionResult Logar(LoginViewModel login)
         {
-            Usuarios usuarioBuscado = _usuarioRepository.BuscarPorEmailSenha(login.email, login.senha);
+            Usuario usuarioBuscado = _usuarioRepository.BuscarPorEmailSenha(login.email, login.senha);
 
             if (usuarioBuscado == null)
             {

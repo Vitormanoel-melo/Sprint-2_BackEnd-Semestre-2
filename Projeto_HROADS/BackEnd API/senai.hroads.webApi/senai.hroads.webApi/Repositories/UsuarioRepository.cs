@@ -18,9 +18,36 @@ namespace senai.hroads.webApi.Repositories
         /// </summary>
         /// <param name="id">Id do usuário que será atualizado</param>
         /// <param name="usuarioAtualizado">Objeto usuarioAtualizado com as novas informações</param>
-        public void Atualizar(int id, Usuarios usuarioAtualizado)
+        public void Atualizar(int id, Usuario usuarioAtualizado)
         {
-            throw new NotImplementedException();
+            Usuario usuarioBuscado = BuscarPorId(id);
+
+            if (usuarioAtualizado.nome != null)
+            {
+                usuarioBuscado.nome = usuarioAtualizado.nome;
+            }
+
+            if (usuarioAtualizado.sobrenome != null)
+            {
+                usuarioBuscado.sobrenome = usuarioAtualizado.sobrenome;
+            }
+
+            if (usuarioAtualizado.email != null)
+            {
+                if (BuscarPorEmail(usuarioAtualizado.email) == null)
+                {
+                    usuarioBuscado.email = usuarioAtualizado.email;
+                }
+            }
+
+            if (usuarioAtualizado.senha != null)
+            {
+                usuarioBuscado.senha = usuarioAtualizado.senha;
+            }
+
+            ctx.Usuarios.Update(usuarioBuscado);
+
+            ctx.SaveChanges();
         }
 
         public string BuscarPermissao(int id)
@@ -32,7 +59,7 @@ namespace senai.hroads.webApi.Repositories
             return permissao;
         }
 
-        public Usuarios BuscarPorEmail(string email)
+        public Usuario BuscarPorEmail(string email)
         {
             return ctx.Usuarios.FirstOrDefault(u => u.email == email);
         }
@@ -43,7 +70,7 @@ namespace senai.hroads.webApi.Repositories
         /// <param name="email">E-mail do usuário que será buscado</param>
         /// <param name="senha">Senha do usuário que será buscado</param>
         /// <returns>Um usuário encontrado</returns>
-        public Usuarios BuscarPorEmailSenha(string email, string senha)
+        public Usuario BuscarPorEmailSenha(string email, string senha)
         {
             return ctx.Usuarios.FirstOrDefault(u => u.email == email && u.senha == senha);
         }
@@ -53,7 +80,7 @@ namespace senai.hroads.webApi.Repositories
         /// </summary>
         /// <param name="id">Id do usuario que será buscado</param>
         /// <returns>Um usuário encontrado ou null</returns>
-        public Usuarios BuscarPorId(int id)
+        public Usuario BuscarPorId(int id)
         {
             return ctx.Usuarios.Include(usu => usu.tipoUsuario).Include(us => us.personagens).FirstOrDefault(u => u.idUsuario == id);
         }
@@ -62,7 +89,7 @@ namespace senai.hroads.webApi.Repositories
         /// Cadastra um usuário
         /// </summary>
         /// <param name="novoUsuario">Objeto novoUsuario que será cadastrado</param>
-        public void Cadastrar(Usuarios novoUsuario)
+        public void Cadastrar(Usuario novoUsuario)
         {
             ctx.Usuarios.Add(novoUsuario);
 
@@ -75,7 +102,7 @@ namespace senai.hroads.webApi.Repositories
         /// <param name="id">Id do usuário que será deletado</param>
         public void Deletar(int id)
         {
-            Usuarios usuario = ctx.Usuarios.Find(id);
+            Usuario usuario = BuscarPorId(id);
 
             ctx.Usuarios.Remove(usuario);
 
@@ -86,12 +113,12 @@ namespace senai.hroads.webApi.Repositories
         /// Lista todos os usuarios
         /// </summary>
         /// <returns>Uma lista de usuarios</returns>
-        public List<Usuarios> Listar()
+        public List<Usuario> Listar()
         {
             //return ctx.Usuarios.Include(u => u.tipoUsuario).Include(us => us.personagens).ToList();
 
             // Lista todos os usuários sem mostrar suas senhas
-            return ctx.Usuarios.Select(u => new Usuarios
+            return ctx.Usuarios.Select(u => new Usuario
             {
                 idUsuario = u.idUsuario,
                 nome = u.nome,
@@ -99,7 +126,7 @@ namespace senai.hroads.webApi.Repositories
                 email = u.email,
                 idTipoUsuario = u.idTipoUsuario,
                 tipoUsuario = u.tipoUsuario,
-                personagens = u.personagens
+                personagens = u.personagens,
             }).ToList();
         }
 
