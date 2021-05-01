@@ -129,7 +129,7 @@ namespace senai.hroads.webApi.Migrations
                     dataAtualização = table.Column<DateTime>(type: "DATE", nullable: false),
                     dataCriacao = table.Column<DateTime>(type: "DATE", nullable: false),
                     idClasse = table.Column<int>(type: "int", nullable: false),
-                    UsuariosidUsuario = table.Column<int>(type: "int", nullable: true)
+                    idUsuario = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -141,11 +141,11 @@ namespace senai.hroads.webApi.Migrations
                         principalColumn: "idClasse",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Personagens_Usuarios_UsuariosidUsuario",
-                        column: x => x.UsuariosidUsuario,
+                        name: "FK_Personagens_Usuarios_idUsuario",
+                        column: x => x.idUsuario,
                         principalTable: "Usuarios",
                         principalColumn: "idUsuario",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -155,9 +155,9 @@ namespace senai.hroads.webApi.Migrations
                 {
                     { 1, null, "Bárbaro" },
                     { 2, null, "Cruzado" },
-                    { 3, null, "Caçadora de Demônios" },
+                    { 3, null, "Caçadora" },
                     { 4, null, "Monge" },
-                    { 5, null, "Necromancer" },
+                    { 5, null, "Necromante" },
                     { 6, null, "Feiticeiro" },
                     { 7, null, "Arcanista" }
                 });
@@ -178,8 +178,8 @@ namespace senai.hroads.webApi.Migrations
                 columns: new[] { "idTipoUsuario", "titulo" },
                 values: new object[,]
                 {
-                    { 1, "ADMINISTRADOR" },
-                    { 2, "JOGADOR" }
+                    { 1, "administrador" },
+                    { 2, "jogador" }
                 });
 
             migrationBuilder.InsertData(
@@ -193,28 +193,48 @@ namespace senai.hroads.webApi.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Personagens",
-                columns: new[] { "idPersonagem", "MaxMana", "MaxVida", "UsuariosidUsuario", "dataAtualização", "dataCriacao", "idClasse", "nome" },
-                values: new object[,]
-                {
-                    { 1, 80, 100, null, new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2019, 1, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "DeuBug" },
-                    { 2, 100, 70, null, new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2016, 3, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, "BitBug" },
-                    { 3, 60, 75, null, new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2018, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), 7, "Fer7" }
-                });
-
-            migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "idUsuario", "email", "idTipoUsuario", "nome", "senha", "sobrenome" },
                 values: new object[,]
                 {
-                    { 1, "admin@admin.com", 1, "Admin", "admin", "Adm" },
-                    { 2, "jogador@jogador.com", 2, "Jogador", "jogador", "2" }
+                    { 1, "admin@admin.com", 1, "Admin", "admin", "adm" },
+                    { 2, "jogador@gmail.com", 2, "Jogador", "jogador", "2" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ClassesHabilidade",
+                columns: new[] { "idClasseHabilidade", "idClasse", "idHabilidade" },
+                values: new object[,]
+                {
+                    { 1, 1, 1 },
+                    { 4, 3, 1 },
+                    { 2, 1, 2 },
+                    { 3, 2, 2 },
+                    { 6, 4, 2 },
+                    { 5, 4, 3 },
+                    { 8, 6, 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Personagens",
+                columns: new[] { "idPersonagem", "MaxMana", "MaxVida", "dataAtualização", "dataCriacao", "idClasse", "idUsuario", "nome" },
+                values: new object[,]
+                {
+                    { 1, 80, 100, new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2019, 1, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "DeuBug" },
+                    { 2, 100, 70, new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2016, 3, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, 2, "BitBug" },
+                    { 3, 60, 75, new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2018, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), 7, 2, "Fer8" }
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Classes_ClassesHabilidadeidClasseHabilidade",
                 table: "Classes",
                 column: "ClassesHabilidadeidClasseHabilidade");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Classes_Nome",
+                table: "Classes",
+                column: "Nome",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClassesHabilidade_idClasse",
@@ -242,20 +262,14 @@ namespace senai.hroads.webApi.Migrations
                 column: "idClasse");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Personagens_UsuariosidUsuario",
+                name: "IX_Personagens_idUsuario",
                 table: "Personagens",
-                column: "UsuariosidUsuario");
+                column: "idUsuario");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TiposUsuario_titulo",
-                table: "TiposUsuario",
-                column: "titulo",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Usuarios_email",
-                table: "Usuarios",
-                column: "email",
+                name: "IX_Personagens_nome",
+                table: "Personagens",
+                column: "nome",
                 unique: true);
 
             migrationBuilder.CreateIndex(

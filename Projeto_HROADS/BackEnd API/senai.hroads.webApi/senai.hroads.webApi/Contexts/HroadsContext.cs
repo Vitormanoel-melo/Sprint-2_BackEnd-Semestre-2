@@ -20,7 +20,7 @@ namespace senai.hroads.webApi.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=LAPTOP-70KR9CNR; Database=HROADS_SENAI_TARDE; user Id=sa; pwd=senai@132");
+            optionsBuilder.UseSqlServer("Server=LAPTOP-70KR9CNR; Database=senai_hroads; user Id=sa; pwd=senai@132");
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -53,13 +53,24 @@ namespace senai.hroads.webApi.Contexts
                new Habilidade { idHabilidade = 2, nome = "Escudo Supremo", idTipoHabilidade = 2 },
                new Habilidade { idHabilidade = 3, nome = "Recuperar Vida", idTipoHabilidade = 3 });
 
+            modelBuilder.Entity<ClassesHabilidade>().HasData(
+                new ClassesHabilidade { idClasseHabilidade = 1, idClasse = 1, idHabilidade = 1 },
+                new ClassesHabilidade { idClasseHabilidade = 2, idClasse = 1, idHabilidade = 2 },
+                new ClassesHabilidade { idClasseHabilidade = 3, idClasse = 2, idHabilidade = 2 },
+                new ClassesHabilidade { idClasseHabilidade = 4, idClasse = 3, idHabilidade = 1 },
+                new ClassesHabilidade { idClasseHabilidade = 5, idClasse = 4, idHabilidade = 3 },
+                new ClassesHabilidade { idClasseHabilidade = 6, idClasse = 4, idHabilidade = 2 },
+                //new ClassesHabilidade { idClasseHabilidade = 7, idClasse = 5 },
+                new ClassesHabilidade { idClasseHabilidade = 8, idClasse = 6, idHabilidade = 3 }
+                //new ClassesHabilidade { idClasseHabilidade = 9, idClasse = 7 }
+                );
 
             modelBuilder.Entity<Personagem>(entity =>
             {
                 entity.HasData(
-                    new Personagem { idPersonagem = 1, idClasse = 1, nome = "DeuBug", MaxVida = 100, MaxMana = 80, dataAtualização = Convert.ToDateTime("02/03/2021"), dataCriacao = Convert.ToDateTime("18/01/2019") },
-                    new Personagem { idPersonagem = 2, idClasse = 4, nome = "BitBug", MaxVida = 70, MaxMana = 100, dataAtualização = Convert.ToDateTime("02/03/2021"), dataCriacao = Convert.ToDateTime("17/03/2016") },
-                    new Personagem { idPersonagem = 3, idClasse = 7, nome = "Fer8", MaxVida = 75, MaxMana = 60, dataAtualização = Convert.ToDateTime("02/03/2021"), dataCriacao = Convert.ToDateTime("18/03/2018") });
+                    new Personagem { idPersonagem = 1, idClasse = 1, idUsuario = 2, nome = "DeuBug", MaxVida = 100, MaxMana = 80, dataAtualização = Convert.ToDateTime("02/03/2021"), dataCriacao = Convert.ToDateTime("18/01/2019") },
+                    new Personagem { idPersonagem = 2, idClasse = 4, idUsuario = 2, nome = "BitBug", MaxVida = 70, MaxMana = 100, dataAtualização = Convert.ToDateTime("02/03/2021"), dataCriacao = Convert.ToDateTime("17/03/2016") },
+                    new Personagem { idPersonagem = 3, idClasse = 7, idUsuario = 2, nome = "Fer8", MaxVida = 75, MaxMana = 60, dataAtualização = Convert.ToDateTime("02/03/2021"), dataCriacao = Convert.ToDateTime("18/03/2018") });
 
                 entity.HasIndex(p => p.nome).IsUnique();
             });

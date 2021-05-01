@@ -37,6 +37,10 @@ namespace senai.hroads.webApi.Domains
         [Required(ErrorMessage = "O personagem precisa ter uma classe")]
         public int idClasse { get; set; }
 
+        public int idUsuario { get; set; }
+
+        [ForeignKey("idUsuario")]
+        public Usuario usuario { get; set; }
 
         [ForeignKey("idClasse")]
         public Classe classe { get; set; }

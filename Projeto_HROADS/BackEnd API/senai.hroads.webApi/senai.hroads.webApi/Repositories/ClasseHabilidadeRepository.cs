@@ -11,29 +11,76 @@ namespace senai.hroads.webApi.Repositories
 {
     public class ClasseHabilidadeRepository : IClasseHabilidadeRepository
     {
+        HroadsContext ctx = new HroadsContext();
+
+        /// <summary>
+        /// Atualiza uma classe habilidade existente
+        /// </summary>
+        /// <param name="id">Id da classe habilidade que será atualizada</param>
+        /// <param name="cHablidadeAtualizada">Objeto cHabilidadeAtualizada com as novas informações</param>
         public void Atualizar(int id, ClassesHabilidade cHablidadeAtualizada)
         {
-            throw new NotImplementedException();
+            ClassesHabilidade classeHabilidade = BuscarPorId(id);
+
+            if (ctx.Classes.Find(cHablidadeAtualizada.idClasse) != null)
+            {
+                classeHabilidade.idClasse = cHablidadeAtualizada.idClasse;
+            }
+
+            if (ctx.Habilidades.Find(cHablidadeAtualizada.idHabilidade) != null)
+            {
+                classeHabilidade.idHabilidade = cHablidadeAtualizada.idHabilidade;
+            }
+
+            ctx.ClasseHabilidade.Update(classeHabilidade);
+
+            ctx.SaveChanges();
         }
 
+        /// <summary>
+        /// Busca uma classe com suas habilidade
+        /// </summary>
+        /// <param name="id">Id da classe habilidade que será buscada</param>
+        /// <returns>Uma classe habilidade encontrada</returns>
         public ClassesHabilidade BuscarPorId(int id)
         {
-            throw new NotImplementedException();
+            return ctx.ClasseHabilidade.FirstOrDefault(c => c.idClasseHabilidade == id);
         }
 
-        public void Cadastrar(ClassesHabilidade novaCHabilidade)
+        /// <summary>
+        /// Cadastra uma nova classe habilidade
+        /// </summary>
+        /// <param name="novaClasseHabilidade">Objeto novaClasseHabilidade com as informações para cadastro</param>
+        public void Cadastrar(ClassesHabilidade novaClasseHabilidade)
         {
-            throw new NotImplementedException();
+            ctx.ClasseHabilidade.Add(novaClasseHabilidade);
+
+            ctx.SaveChanges();
         }
 
+        /// <summary>
+        /// Deleta uma classe habilidade existente
+        /// </summary>
+        /// <param name="id">Id da classe habilidade que será deletada</param>
         public void Deletar(int id)
         {
-            throw new NotImplementedException();
+            ClassesHabilidade ClasseHabilidade = BuscarPorId(id);
+
+            ctx.ClasseHabilidade.Remove(ClasseHabilidade);
+
+            ctx.SaveChanges();
         }
 
+        /// <summary>
+        /// Lista todas as classes com suas habilidades
+        /// </summary>
+        /// <returns>Uma lista de classes</returns>
         public List<ClassesHabilidade> Listar()
         {
-            throw new NotImplementedException();
+            return ctx.ClasseHabilidade
+                .Include(ch => ch.classe)
+                .Include(ch => ch.habilidade)
+                .ToList();
         }
 
     }

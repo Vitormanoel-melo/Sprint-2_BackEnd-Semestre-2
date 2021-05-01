@@ -30,6 +30,7 @@ namespace senai.hroads.webApi.Interfaces
         /// <summary>
         /// Atualiza uma classe existente
         /// </summary>
+        /// <param name="id">Id da classe que será atualizada </param>
         /// <param name="classeAtualizada">Objeto classeAtualizada com as novas informações</param>
         /// <returns>true se atualizar ou false se não atualizar</returns>
         bool Atualizar(int id, Classe classeAtualizada);

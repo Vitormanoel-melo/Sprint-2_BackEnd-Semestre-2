@@ -26,7 +26,5 @@ namespace senai.hroads.webApi.Domains
 
         public List<Classe> ListaClasses { get; set; }
         public List<Habilidade> ListaHabilidades { get; set; }
-
-
     }
 }
