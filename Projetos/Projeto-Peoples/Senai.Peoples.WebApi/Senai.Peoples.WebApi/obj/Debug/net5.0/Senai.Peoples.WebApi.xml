@@ -1,0 +1,332 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Senai.Peoples.WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:Senai.Peoples.WebApi.Controllers.FuncionariosController.Get">
+            <summary>
+            Lista todos os funcionários
+            </summary>
+            <returns>Status code Ok e a listaFuncionario</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Controllers.FuncionariosController.Post(Senai.Peoples.WebApi.Domains.FuncionarioDomain)">
+            <summary>
+            Cadastra um funcionário
+            </summary>
+            <param name="novoFuncionario">funcionário que vai ser cadastrado</param>
+            <returns>status code 201 - Created</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Controllers.FuncionariosController.GetById(System.Int32)">
+            <summary>
+            Busca funcionario pelo id
+            </summary>
+            <param name="id">id do funcionario buscado</param>
+            <returns> funcionario encontrado </returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Controllers.FuncionariosController.Delete(System.Int32)">
+            <summary>
+            Deleta um funcionário pelo id
+            </summary>
+            <param name="id">id do funcionario que será deletado</param>
+            <returns> status code 204 - No content</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Controllers.FuncionariosController.PutByIdCorpo(Senai.Peoples.WebApi.Domains.FuncionarioDomain)">
+            <summary>
+            Atualiza funcionario pelo id passado no corpo da requisição
+            </summary>
+            <param name="funcionario">objeto com as novas informações</param>
+            <returns>status code 200 - Ok</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Controllers.FuncionariosController.GetByName(System.String)">
+            <summary>
+            Busca um funcionario pelo nome
+            </summary>
+            <param name="nome">nome do funcionario que será buscado</param>
+            <returns>objeto funcionario encontrado</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Controllers.FuncionariosController.ListarNomeCompleto">
+            <summary>
+            retorna o nome completo de todos os funcionários
+            </summary>
+            <returns>lista de nomes completos ou NotFound </returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Controllers.FuncionariosController.GetByOrder(System.String)">
+            <summary>
+            Lista os funcionarios em ordem crescente ou decrescente
+            </summary>
+            <param name="ordem">ordem em que será listado</param>
+            <returns>lista de funcionarios</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Controllers.LoginsController.Logar(Senai.Peoples.WebApi.Domains.LoginDomain)">
+            <summary>
+            Faz o login do usuário
+            </summary>
+            <param name="login">Objeto login com email e senha do usuário</param>
+            <returns>Status code 200 - Ok e um token ou Status code 404 - NotFound caso o usuário não seja encontrado</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Controllers.TiposUsuariosController.Get">
+            <summary>
+            Lista todos os tiposUsuarios
+            </summary>
+            <returns>Um status code 200 - Ok e uma lista de tiposUsuarios</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Controllers.TiposUsuariosController.GetById(System.Int32)">
+            <summary>
+            Busca um tipoUsuario pelo id
+            </summary>
+            <param name="id">id do tipoUsuario que será buscado</param>
+            <returns>Um status code 200 - Ok e um objeto tipoUsuario encontrado ou Not Found se não for encontrado</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Controllers.TiposUsuariosController.Delete(System.Int32)">
+            <summary>
+            Deleta um tipoUsuario pelo seu id
+            </summary>
+            <param name="id">id do tipoUsuario que será deletado</param>
+            <returns>Um status code 204 - No content ou NotFound</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Controllers.TiposUsuariosController.Put(System.Int32,Senai.Peoples.WebApi.Domains.TipoUsuarioDomain)">
+            <summary>
+            Atualiza um tipoUsuario existente
+            </summary>
+            <param name="id">id do tipoUsuario que será deletado</param>
+            <param name="tipoUsuario">Objeto tipoUsuario com as novas informações</param>
+            <returns>Um status code 204 - No content</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Controllers.UsuariosController.Get">
+            <summary>
+            Lista todos os usuários
+            </summary>
+            <returns>Um status code 200 - Ok com a lista de usuários</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Controllers.UsuariosController.GetById(System.Int32)">
+            <summary>
+            Busca um usuário pelo seu id
+            </summary>
+            <param name="id">id do usuário que será buscado</param>
+            <returns>Status code 200 - Ok com o usuário encontrado ou Status Code 404 - NotFound se o usuário ão for encontrado</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Controllers.UsuariosController.Post(Senai.Peoples.WebApi.Domains.UsuarioDomain)">
+            <summary>
+            Cadastra um usuário
+            </summary>
+            <param name="usuario">Objeto usuário que será cadastrado</param>
+            <returns>Status code 201 - Created</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Controllers.UsuariosController.Delete(System.Int32)">
+            <summary>
+            Deleta um usuário existente
+            </summary>
+            <param name="id">id do usuário que será deletado</param>
+            <returns>Status code 204 - No content, ou Status Code 404 - NotFound se o usuário não for encontrado</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Controllers.UsuariosController.Patch(System.Int32,Senai.Peoples.WebApi.Domains.UsuarioDomain)">
+            <summary>
+            Atualiza um usuário existente
+            </summary>
+            <param name="id">id do usuário que será atualizado</param>
+            <param name="usuario">Objeto usuário com as novas informações</param>
+            <returns>Status code 204 - No content, ou Status code 404 - Not Found se o usuário não for encontrado</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Interfaces.ILoginRepository.Logar(System.String,System.String)">
+            <summary>
+            Busca um usuário pelo email e senha
+            </summary>
+            <param name="email">Email do usuário que será buscado</param>
+            <param name="senha">Senha do usuário que será buscado</param>
+            <returns>Objeto UsuarioDomain que foi encontrado</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Interfaces.ILoginRepository.BuscarPermissao(System.Int32)">
+            <summary>
+            Busca uma permissão existente
+            </summary>
+            <param name="id">id da permissão que será encontrada</param>
+            <returns>uma permissão ou null</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Interfaces.ITipoUsuarioRepository.Listar">
+            <summary>
+            Lista todos os tipos de Usuario
+            </summary>
+            <returns>Lista com todos os tipos</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Interfaces.ITipoUsuarioRepository.BuscarPorId(System.Int32)">
+            <summary>
+            Busca um tipo de usuario pelo id
+            </summary>
+            <param name="id">id do tipo de usuário que será buscado</param>
+            <returns>Um objeto TipoUsuarioDomain ou null</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Interfaces.ITipoUsuarioRepository.Atualizar(System.Int32,Senai.Peoples.WebApi.Domains.TipoUsuarioDomain)">
+            <summary>
+            Atualiza um tipo de usuario
+            </summary>
+            <param name="id">id do tipo que será atualizado</param>
+            <param name="tipoUsuario">Objeto TipoUsuarioDomain com as novas informações</param>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Interfaces.ITipoUsuarioRepository.Deletar(System.Int32)">
+            <summary>
+            Deleta um tipo de usuário pelo id
+            </summary>
+            <param name="id">id do tipo de usuario que será deletado</param>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Interfaces.IUsuarioRepository.Cadastrar(Senai.Peoples.WebApi.Domains.UsuarioDomain)">
+            <summary>
+            Método que cadastra um usuário
+            </summary>
+            <param name="usuario">Objeto UsuarioDomain que será cadastrado</param>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Interfaces.IUsuarioRepository.Listar">
+            <summary>
+            Lista todos os usuários
+            </summary>
+            <returns>Uma lista de usuários</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Interfaces.IUsuarioRepository.BuscarPorId(System.Int32)">
+            <summary>
+            Busca um usuario pelo id
+            </summary>
+            <param name="id">id do usuário que será buscado</param>
+            <returns>Um objeto UsuarioDomainEncontrado ou null</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Interfaces.IUsuarioRepository.Atualizar(System.Int32,Senai.Peoples.WebApi.Domains.UsuarioDomain)">
+            <summary>
+            Atualiza um usuário pelo id
+            </summary>
+            <param name="id">id do usuário que será atualizado</param>
+            <param name="usuario">Objeto UsuarioDomain com as novas informações</param>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Interfaces.IUsuarioRepository.Deletar(System.Int32)">
+            <summary>
+            Deleta um usuário pelo id
+            </summary>
+            <param name="id">id do usuario que será deletado</param>
+        </member>
+        <member name="F:Senai.Peoples.WebApi.Repositories.FuncionarioRepository.stringConexao">
+            <summary>
+            string que define a nossa conexão
+            Data Source = Servidor
+            initial catalog = banco de dados
+            user Id = logon
+            pwd = senha
+            </summary>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Repositories.FuncionarioRepository.AtualizarIdCorpo(Senai.Peoples.WebApi.Domains.FuncionarioDomain)">
+            <summary>
+            Atualiza funcionário passando o id pelo corpo da requisição
+            </summary>
+            <param name="novoFuncionario">Dados do funcionario para a atualização</param>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Repositories.FuncionarioRepository.Cadastrar(Senai.Peoples.WebApi.Domains.FuncionarioDomain)">
+            <summary>
+            Método que cadastra um novo funcionário
+            </summary>
+            <param name="novoFuncionario">Funcionário que será cadastrado </param>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Repositories.FuncionarioRepository.Deletar(System.Int32)">
+            <summary>
+            Deleta um funcionário pelo seu id
+            </summary>
+            <param name="id">id do funcionário que será deletado</param>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Repositories.FuncionarioRepository.BuscarPorId(System.Int32)">
+            <summary>
+            Busca funcionário pelo seu id
+            </summary>
+            <param name="id">id do funcionário que será buscado</param>
+            <returns>Um objeto funcionário encontrado ou null</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Repositories.FuncionarioRepository.Listar">
+            <summary>
+            Método que retorna uma lista de todos os funcionários
+            </summary>
+            <returns>Uma lista de funcionários</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Repositories.FuncionarioRepository.BuscarPorNome(System.String)">
+            <summary>
+            Busca funcionario pelo nome
+            </summary>
+            <param name="nome">Nome do funcionario que será buscado</param>
+            <returns>um objeto funcionario ou null</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Repositories.FuncionarioRepository.ListarNomesCompletos(System.Collections.Generic.List{Senai.Peoples.WebApi.Domains.FuncionarioDomain})">
+            <summary>
+            Define objetos com nome completo dos funcionários
+            </summary>
+            <param name="listaFunc">lista de funcionarios</param>
+            <returns>Lista de objects</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Repositories.LoginRepository.Logar(System.String,System.String)">
+            <summary>
+            Busca um usuário pelo email e senha
+            </summary>
+            <param name="email">Email do usuário que será buscado</param>
+            <param name="senha">Senha do usuário que será buscado</param>
+            <returns>Objeto UsuarioDomain que foi encontrado</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Repositories.LoginRepository.BuscarPermissao(System.Int32)">
+            <summary>
+            Busca uma permissão existente
+            </summary>
+            <param name="id">id da permissão que será encontrada</param>
+            <returns>uma permissão ou null</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Repositories.TipoUsuarioRepository.Atualizar(System.Int32,Senai.Peoples.WebApi.Domains.TipoUsuarioDomain)">
+            <summary>
+            Atualiza um tipoUsuario existente
+            </summary>
+            <param name="id">id do tipoUsuario que será deletado</param>
+            <param name="tipoUsuario">Objeto tipoUsuario com as novas informações</param>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Repositories.TipoUsuarioRepository.BuscarPorId(System.Int32)">
+            <summary>
+            Busca um tipoUsuario pelo id
+            </summary>
+            <param name="id">id do tipoUsuario que será buscado</param>
+            <returns>Um objeto tipoUsuario buscado</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Repositories.TipoUsuarioRepository.Deletar(System.Int32)">
+            <summary>
+            Deleta um tipoUsuario existente
+            </summary>
+            <param name="id">id do tipoUsuario que será deletado</param>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Repositories.TipoUsuarioRepository.Listar">
+            <summary>
+            Lista todos os tiposUsuario
+            </summary>
+            <returns>Uma lista de tipoUsuario</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Repositories.UsuarioRepository.Atualizar(System.Int32,Senai.Peoples.WebApi.Domains.UsuarioDomain)">
+            <summary>
+            Atualiza um usuário pelo id
+            </summary>
+            <param name="id">id do usuário que será atualizado</param>
+            <param name="usuario">Objeto UsuarioDomain com as novas informações</param>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Repositories.UsuarioRepository.BuscarPorId(System.Int32)">
+            <summary>
+            Busca um usuario pelo id
+            </summary>
+            <param name="id">id do usuário que será buscado</param>
+            <returns>Um objeto UsuarioDomainEncontrado ou null</returns>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Repositories.UsuarioRepository.Cadastrar(Senai.Peoples.WebApi.Domains.UsuarioDomain)">
+            <summary>
+            Método que cadastra um usuário
+            </summary>
+            <param name="usuario">Objeto UsuarioDomain que será cadastrado</param>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Repositories.UsuarioRepository.Deletar(System.Int32)">
+            <summary>
+            Deleta um usuário pelo id
+            </summary>
+            <param name="id">id do usuario que será deletado</param>
+        </member>
+        <member name="M:Senai.Peoples.WebApi.Repositories.UsuarioRepository.Listar">
+            <summary>
+            Lista todos os usuários
+            </summary>
+            <returns>Uma lista de usuários</returns>
+        </member>
+    </members>
+</doc>
